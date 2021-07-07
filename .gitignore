@@ -1,0 +1,3 @@
+# Exclude build files
+/build
+/bin
