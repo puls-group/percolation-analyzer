@@ -13,7 +13,7 @@ The code is provided as-is without any warranty for its correctness. We have tes
 
 If you use the code provided in this repository for your own research purposes, please cite the paper "TODO" (doi: TODO) as a reference.
 
-Bibtex:
+BibTeX:
 ```
 @article{}
 ```
