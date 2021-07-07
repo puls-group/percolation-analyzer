@@ -9,14 +9,18 @@ This repository contains the necessary code to analyze whether or not a molecule
 
 ## License/Permission of use
 
-The code is provided as-is without any warranty for its correctness. We have tested it and are reasonably sure that it works, but it is always possible for bugs to occur in special cases. If you think you have found a bug, please let us know via the issues of this project.
+The code is provided as-is without any warranty for its correctness under the MIT license (see `LICENSE` file). We have tested it and are reasonably sure that it works, but it is always possible for bugs to occur in special cases. If you think you have found a bug, please let us know via the issues of this project.
 
-If you use the code provided in this repository for your own research purposes, please cite the paper "TODO" (doi: TODO) as a reference.
+If you use the code provided in this repository for research purposes, please cite the paper "TODO" (doi: TODO) as a reference.
 
 BibTeX:
 ```
 @article{}
 ```
+
+This repository also provides a doi for each full release of the software:
+
+TODO
 
 ## How to use
 
