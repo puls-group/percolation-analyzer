@@ -1,5 +1,6 @@
 
 #include "percolation-detection.hpp"
+#include <queue>
 #include <set>
 namespace percolation
 {
@@ -67,4 +68,53 @@ namespace percolation
         return true;
     }
 
+
+    std::vector<ComponentInfo> PercolationGraph::get_components() const
+    {
+        std::vector<ComponentInfo> component_info;
+        size_t curr_comp = 0;
+        size_t num_vertices = this->vertices.size();
+        std::vector<bool> visited(num_vertices, false);
+
+        for (size_t curr_vertex = 0; curr_vertex < num_vertices; curr_vertex++)
+        {
+            if (visited[curr_vertex])
+            {
+                continue;
+            }
+
+            std::queue<size_t, std::set<size_t>> vertex_queue;
+            vertex_queue.push(curr_vertex);
+
+            // Create new component metadata
+            ComponentInfo new_comp;
+            new_comp.component_index = curr_comp++;
+            new_comp.perolation_dim = (size_t)-1;
+
+            // Find all vertices in component via BFS
+            while (!vertex_queue.empty())
+            {
+                size_t vert_index = vertex_queue.front();
+                vertex_queue.pop();
+
+                if (visited[vert_index])
+                {
+                    continue;
+                }
+
+                new_comp.vertices.push_back(vertices[vert_index]);
+                visited[vert_index] = true;
+                for (auto edge : this->edges[vert_index])
+                {
+                    size_t neighbor = edge.first;
+                    if (!visited[neighbor])
+                    {
+                        vertex_queue.push(neighbor);
+                    }
+                }
+            }
+            component_info.push_back(new_comp);
+        }
+        return component_info;
+    }
 }
