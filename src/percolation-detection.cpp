@@ -37,8 +37,10 @@ namespace percolation
 
     bool TranslationVector::operator==(struct TranslationVector const &other) const
     {
-        for(size_t i=0; i < vector_space_dimension; i++){
-            if (vec[i] != other.vec[i]){
+        for (size_t i = 0; i < vector_space_dimension; i++)
+        {
+            if (vec[i] != other.vec[i])
+            {
                 return false;
             }
         }
