@@ -94,6 +94,79 @@ namespace percolation
         return true;
     }
 
+    std::vector<ComponentInfo> PercolationGraph::get_component_percolation_info() const
+    {
+        // Obtain component decomposition
+        std::vector<ComponentInfo> component_info = get_components();
+
+        const int64_t comp_count = component_info.size();
+        const size_t num_vertices = this->vertices.size();
+        std::vector<bool> visited(num_vertices, false);
+        std::vector<struct TranslationVector> original_positions(num_vertices);
+
+        TranslationVector origin;
+        for (size_t i = 0; i < vector_space_dimension; i++)
+        {
+            origin.vec[i] = 0;
+        }
+
+#pragma omp parallel for
+        for (int64_t curr_component = 0; curr_component < comp_count; curr_component++)
+        {
+            // Determine percolation dimension for each of the
+
+            ComponentInfo &curr_info = component_info[curr_component];
+            size_t start_vertex = curr_info.vertices[0].index;
+
+            std::vector<TranslationVector> basis_set;
+
+            std::queue<std::pair<size_t, TranslationVector>, std::set<std::pair<size_t, TranslationVector>>> vertex_queue;
+            vertex_queue.push({start_vertex, origin});
+
+            while (!vertex_queue.empty())
+            {
+                auto vertex_position = vertex_queue.front();
+                vertex_queue.pop();
+
+                size_t vert_index = vertex_position.first;
+                const TranslationVector &curr_position = vertex_position.second;
+
+                // Possibly encountered different copy of vertex
+                if (visited[vert_index])
+                {
+                    TranslationVector difference = curr_position - original_positions[vert_index];
+                    // got new entry to basis set
+                    if (check_translation_independent(basis_set, difference))
+                    {
+                        basis_set.push_back(difference);
+
+                        // Maximum dimension attained, stop analysis
+                        if (basis_set.size() >= vector_space_dimension)
+                        {
+                            break;
+                        }
+                    }
+                    continue;
+                }
+
+                // Deal with first copy of vertex
+                visited[vert_index] = true;
+                original_positions[vert_index] = curr_position;
+                for (auto edge : this->edges[vert_index])
+                {
+                    size_t neighbor = edge.first;
+                    TranslationVector target_position = curr_position + edge.second.translation;
+                    if (!visited[neighbor])
+                    {
+                        vertex_queue.push({neighbor, target_position});
+                    }
+                }
+            }
+            curr_info.perolation_dim = basis_set.size();
+        }
+
+        return component_info;
+    }
 
     std::vector<ComponentInfo> PercolationGraph::get_components() const
     {
