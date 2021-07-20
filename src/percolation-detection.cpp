@@ -75,6 +75,8 @@ namespace percolation
             return false;
         }
         vertices[vertex_index] = vertex_data;
+        vertices[vertex_index].index = vertex_index;
+
         return true;
     }
 
