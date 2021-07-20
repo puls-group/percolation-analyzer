@@ -34,6 +34,17 @@ namespace percolation
         size_t perolation_dim;
         std::vector<VertexData> vertices;
     };
+    
+    /**
+     * @brief Function to calculate the determinant of a square matrix
+     * 
+     * May not be super optimized but does the job. Only true implementation for dimensions up to 3
+     * For higher dimensions, please provide own implementation in the source code or an error message will be thrown.
+     * 
+     * @param matrix The matrix whose determinant is supposed to be calculated
+     * @return translation_coordinate_type The determinant value
+     */
+    translation_coordinate_type det(const std::vector<std::vector<translation_coordinate_type>> &matrix);
 
     /**
      * @brief Function to check if a given basis set of translation vectors and another translation vector are linearly independent
