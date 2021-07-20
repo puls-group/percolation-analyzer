@@ -12,6 +12,7 @@ namespace percolation
         {
             res.vec[i] = -vec[i];
         }
+        return res;
     }
 
     struct TranslationVector TranslationVector::operator+(struct TranslationVector const &other) const
@@ -21,6 +22,27 @@ namespace percolation
         {
             res.vec[i] = vec[i] + other.vec[i];
         }
+        return res;
+    }
+
+    struct TranslationVector TranslationVector::operator-(struct TranslationVector const &other) const
+    {
+        TranslationVector res;
+        for (size_t i = 0; i < vector_space_dimension; i++)
+        {
+            res.vec[i] = vec[i] - other.vec[i];
+        }
+        return res;
+    }
+
+    bool TranslationVector::operator==(struct TranslationVector const &other) const
+    {
+        for(size_t i=0; i < vector_space_dimension; i++){
+            if (vec[i] != other.vec[i]){
+                return false;
+            }
+        }
+        return true;
     }
 
     struct EdgeData EdgeData::inverse() const
