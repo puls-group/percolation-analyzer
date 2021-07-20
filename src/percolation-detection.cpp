@@ -56,7 +56,48 @@ namespace percolation
 
     bool check_translation_independent(const std::vector<TranslationVector> &existing_base, const TranslationVector &new_vector)
     {
-        return false;
+
+        size_t existing_dim = existing_base.size();
+        size_t matrix_dim = existing_dim + 1;
+        if (matrix_dim > vector_space_dimension)
+        {
+            return false;
+        }
+
+        // Construct the basic matrix
+        std::vector<std::vector<translation_coordinate_type>> base_matrix(existing_dim + 1, std::vector<translation_coordinate_type>(vector_space_dimension));
+        for (size_t i = 0; i < existing_dim; i++)
+        {
+            for (size_t j = 0; j < vector_space_dimension; j++)
+            {
+                base_matrix[i][j] = existing_base[i].vec[j];
+            }
+        }
+
+        std::vector<std::vector<translation_coordinate_type>> Mt_M(matrix_dim, std::vector<translation_coordinate_type>(matrix_dim, 0));
+
+#pragma omp parallel for
+        for (size_t i = 0; i < vector_space_dimension; i++)
+        {
+            for (size_t j = 0; j < vector_space_dimension; j++)
+            {
+                for (size_t k = 0; k < existing_dim; k++)
+                {
+                    Mt_M[i][j] += base_matrix[k][i] * base_matrix[k][j];
+                }
+            }
+        }
+
+        translation_coordinate_type MT_M_determinant = det(Mt_M);
+
+        // If the absolute determinant result is below the threshold, then the vectors are linearly dependent
+        if (translation_abs_function(MT_M_determinant) <= translation_coordinate_precision)
+        {
+            return false;
+        }
+
+        // Vectors are linearly independent
+        return true;
     }
 
     bool PercolationGraph::reserve_vertices(size_t max_index)
