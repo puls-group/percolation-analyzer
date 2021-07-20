@@ -2,6 +2,8 @@
 #include "percolation-detection.hpp"
 #include <queue>
 #include <set>
+#include <cassert>
+#include <sstream>
 namespace percolation
 {
 
@@ -51,6 +53,48 @@ namespace percolation
     {
         EdgeData res(*this);
         res.translation = -this->translation;
+        return res;
+    }
+
+    translation_coordinate_type det(const std::vector<std::vector<translation_coordinate_type>> &matrix)
+    {
+        size_t n = matrix.size();
+
+        if (n < 1)
+        {
+            return translation_coordinate_type();
+        }
+
+        // Check that matrix is square
+        if (matrix[0].size() != matrix.size())
+        {
+            std::stringstream is;
+            is << __FILE__ << "(" << __LINE__ << "): det() only implemented for square matrices" << std::endl;
+            throw std::logic_error(is.str());
+        }
+        translation_coordinate_type res = translation_coordinate_type();
+
+        // Actually calculate the determinant for certain dimensions
+        if (n == 1)
+        {
+            res = matrix[0][0];
+        }
+        else if (n == 2)
+        {
+            res = matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
+        }
+        else if (n == 3)
+        {
+            res = matrix[0][0] * matrix[1][1] * matrix[2][2] + matrix[1][0] * matrix[2][1] * matrix[0][2] + matrix[2][0] * matrix[0][1] * matrix[1][2] - matrix[0][2] * matrix[1][1] * matrix[2][0] - matrix[1][2] * matrix[2][1] * matrix[0][0] - matrix[2][2] * matrix[0][1] * matrix[1][0];
+        }
+        // Output error/throw exception if dimension is not supported
+        else
+        {
+            std::stringstream is;
+            is << __FILE__ << "(" << __LINE__ << "): det() only supports dimensions up to n=3. Please expand function definition if higher dimensions are required" << std::endl;
+            throw std::logic_error(is.str());
+        }
+        
         return res;
     }
 
