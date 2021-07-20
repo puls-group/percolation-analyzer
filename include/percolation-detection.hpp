@@ -1,6 +1,20 @@
 #include <vector>
+#include <cmath>
+#include <cstdlib>
 
+// The value type of coordinates to be considered
 using translation_coordinate_type = int64_t;
+// If the absolute value of a translation coordinate entry is below this, it is considered to be zero
+#define translation_coordinate_precision 0
+// The function to obtain the absolute value for the coordinate type
+#define translation_abs_function std::abs
+
+// alternative values for floating point systems
+//using translation_coordinate_type = float;
+//#define translation_coordinate_precision 1e-7
+//#define translation_abs_function std::abs
+
+// The vector space dimension of the system
 #define vector_space_dimension 3
 
 namespace percolation
