@@ -150,7 +150,13 @@ namespace percolation
         {
             return true;
         }
+        max_index++;
+        size_t curr_size = this->vertices.size();
         this->vertices.resize(max_index);
+        for (size_t i = curr_size; i < max_index; i++)
+        {
+            this->vertices[i].index = i;
+        }
         this->edges.resize(max_index);
         return true;
     }
