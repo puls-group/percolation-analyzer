@@ -37,6 +37,7 @@ namespace percolation
 
     struct EdgeData
     {
+        EdgeData(const TranslationVector &trans) : translation(trans){}
         TranslationVector translation;
 
         struct EdgeData inverse() const;
@@ -111,6 +112,20 @@ namespace percolation
          * @return false 
          */
         bool add_edge(size_t vertex_index_base, size_t vertex_index_head, const EdgeData &edge_data);
+
+        /**
+         * @brief Wrapper to directly provide the TranslationVector instead of an EdgeData object
+         * 
+         * Automatically wraps the TranslationVector in a EdgeData object before insertion
+         * 
+         * @param vertex_index_base 
+         * @param vertex_index_head 
+         * @param edge_trans 
+         * @return true 
+         * @return false 
+         */
+        bool add_edge(size_t vertex_index_base, size_t vertex_index_head, const TranslationVector &edge_trans);
+
         /**
          * @brief Get a list of all connected component of the current graph and their respective percolation information.
          * 
