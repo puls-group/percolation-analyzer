@@ -94,7 +94,7 @@ namespace percolation
             is << __FILE__ << "(" << __LINE__ << "): det() only supports dimensions up to n=3. Please expand function definition if higher dimensions are required" << std::endl;
             throw std::logic_error(is.str());
         }
-        
+
         return res;
     }
 
