@@ -179,6 +179,11 @@ namespace percolation
         return true;
     }
 
+    bool PercolationGraph::add_edge(size_t vertex_index_base, size_t vertex_index_head, const TranslationVector &edge_trans)
+    {
+        return add_edge(vertex_index_base, vertex_index_head, EdgeData(edge_trans));
+    }
+
     std::vector<ComponentInfo> PercolationGraph::get_component_percolation_info() const
     {
         // Obtain component decomposition
