@@ -87,6 +87,7 @@ namespace percolation
          * @return false Memory allocation has failed
          */
         bool reserve_vertices(size_t max_index);
+
         /**
          * @brief Add vertex information to keep track of
          * 
@@ -96,6 +97,7 @@ namespace percolation
          * @return false Something went wrong adding the vertex metadata
          */
         bool add_vertex(size_t vertex_index, const VertexData &vertex_data);
+
         /**
          * @brief Add an edge to the molecular graph including its translation vector
          * 
@@ -124,10 +126,12 @@ namespace percolation
          * @brief Member to keep track of vertex information 
          */
         std::vector<VertexData> vertices;
+
         /**
          * @brief Member to keep track of the edges of the constructed graph
          */
         std::vector<std::vector<std::pair<size_t, EdgeData>>> edges;
+        
         /**
          * @brief Get the connected components of the current graph.
          * 
