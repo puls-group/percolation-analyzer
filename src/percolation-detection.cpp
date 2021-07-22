@@ -205,7 +205,7 @@ namespace percolation
 
             std::vector<TranslationVector> basis_set;
 
-            std::queue<std::pair<size_t, TranslationVector>, std::set<std::pair<size_t, TranslationVector>>> vertex_queue;
+            std::queue<std::pair<size_t, TranslationVector>> vertex_queue;
             vertex_queue.push({start_vertex, origin});
 
             while (!vertex_queue.empty())
@@ -267,7 +267,7 @@ namespace percolation
                 continue;
             }
 
-            std::queue<size_t, std::set<size_t>> vertex_queue;
+            std::queue<size_t> vertex_queue;
             vertex_queue.push(curr_vertex);
 
             // Create new component metadata
