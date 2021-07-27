@@ -109,7 +109,7 @@ namespace percolation
         }
 
         // Construct the basic matrix
-        std::vector<std::vector<translation_coordinate_type>> base_matrix(existing_dim + 1, std::vector<translation_coordinate_type>(vector_space_dimension));
+        std::vector<std::vector<translation_coordinate_type>> base_matrix(matrix_dim, std::vector<translation_coordinate_type>(vector_space_dimension));
         for (size_t i = 0; i < existing_dim; i++)
         {
             for (size_t j = 0; j < vector_space_dimension; j++)
@@ -118,16 +118,21 @@ namespace percolation
             }
         }
 
+        for (size_t j = 0; j < vector_space_dimension; j++)
+        {
+            base_matrix[existing_dim][j] = new_vector.vec[j];
+        }
+
         std::vector<std::vector<translation_coordinate_type>> Mt_M(matrix_dim, std::vector<translation_coordinate_type>(matrix_dim, 0));
 
-#pragma omp parallel for
-        for (size_t i = 0; i < vector_space_dimension; i++)
+        //#pragma omp parallel for
+        for (size_t i = 0; i < matrix_dim; i++)
         {
-            for (size_t j = 0; j < vector_space_dimension; j++)
+            for (size_t j = 0; j < matrix_dim; j++)
             {
-                for (size_t k = 0; k < existing_dim; k++)
+                for (size_t k = 0; k < vector_space_dimension; k++)
                 {
-                    Mt_M[i][j] += base_matrix[k][i] * base_matrix[k][j];
+                    Mt_M[i][j] += base_matrix[i][k] * base_matrix[j][k];
                 }
             }
         }
