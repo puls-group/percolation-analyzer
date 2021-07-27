@@ -169,3 +169,49 @@ TEST_CASE("The graph should correctly detect 1 vertex loop dimensions", "[graph 
     }
 }
 
+TEST_CASE("The graph should correctly detect 1 dimensional components", "[graph 1d]")
+{
+    PercolationGraph graph;
+
+    TranslationVector trans1, trans2, trans3;
+
+    trans1.vec[0] = GENERATE(-1, 1);
+    trans1.vec[1] = GENERATE(0, 1);
+    trans1.vec[2] = GENERATE(-1, 0);
+
+    trans2 = trans1 + trans1;
+    trans3 = -trans1;
+    //std::cerr << trans1.vec[0] << "|" << trans1.vec[1] << "|" << trans1.vec[0] << std::endl;
+    //std::cerr << trans2.vec[0] << "|" << trans2.vec[1] << "|" << trans2.vec[0] << std::endl;
+    //std::cerr << trans3.vec[0] << "|" << trans3.vec[1] << "|" << trans3.vec[0] << std::endl;
+
+    graph.add_edge(0, 1, trans1);
+    graph.add_edge(1, 0, trans1);
+    graph.add_edge(2, 3, trans2);
+    graph.add_edge(3, 2, trans2);
+    graph.add_edge(4, 5, trans3);
+    graph.add_edge(5, 4, trans3);
+
+    std::vector<ComponentInfo> components = graph.get_component_percolation_info();
+
+    REQUIRE(components.size() == 3);
+
+    if (trans1.vec[0] == 0 && trans1.vec[1] == 0 && trans1.vec[2] == 0)
+    {
+        for (size_t i = 0; i < 3; i++)
+        {
+            REQUIRE(components[i].vertices.size() == 2);
+            REQUIRE(components[i].percolation_dim == 0);
+            REQUIRE(components[i].component_index == i);
+        }
+    }
+    else
+    {
+        for (size_t i = 0; i < 3; i++)
+        {
+            REQUIRE(components[i].vertices.size() == 2);
+            REQUIRE(components[i].percolation_dim == 1);
+            REQUIRE(components[i].component_index == i);
+        }
+    }
+}
