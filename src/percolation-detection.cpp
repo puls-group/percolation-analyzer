@@ -263,7 +263,7 @@ namespace percolation
                     }
                 }
             }
-            curr_info.perolation_dim = basis_set.size();
+            curr_info.percolation_dim = basis_set.size();
         }
 
         return component_info;
@@ -289,7 +289,7 @@ namespace percolation
             // Create new component metadata
             ComponentInfo new_comp;
             new_comp.component_index = curr_comp++;
-            new_comp.perolation_dim = (size_t)-1;
+            new_comp.percolation_dim = (size_t)-1;
 
             // Find all vertices in component via BFS
             while (!vertex_queue.empty())

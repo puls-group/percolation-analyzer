@@ -46,7 +46,7 @@ namespace percolation
     struct ComponentInfo
     {
         size_t component_index;
-        size_t perolation_dim;
+        size_t percolation_dim;
         std::vector<VertexData> vertices;
     };
     
