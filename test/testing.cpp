@@ -61,7 +61,7 @@ TEST_CASE("The graph should detect one dimension per component", "[graph compone
         for (size_t i = 0; i < num_vertices; i++)
         {
             REQUIRE(components[i].component_index == i);
-            REQUIRE(components[i].perolation_dim == 0);
+            REQUIRE(components[i].percolation_dim == 0);
             REQUIRE(components[i].vertices.size() == 1);
         }
     }
@@ -84,7 +84,7 @@ TEST_CASE("The graph should detect one dimension per component", "[graph compone
 
     SECTION("Creating a loop should still detect exactly one component")
     {
-        
+
         for (size_t i = 0; i < num_vertices - 1; i++)
         {
             graph2.add_edge(i, i + 1, trans0);
@@ -93,7 +93,7 @@ TEST_CASE("The graph should detect one dimension per component", "[graph compone
 
             REQUIRE(components2.size() == num_vertices - i - 1);
         }
-        
+
         graph2.add_edge(num_vertices - 1, 0, trans0);
 
         std::vector<ComponentInfo> components3 = graph2.get_component_percolation_info();
@@ -101,3 +101,4 @@ TEST_CASE("The graph should detect one dimension per component", "[graph compone
         REQUIRE(components3.size() == 1);
     }
 }
+
