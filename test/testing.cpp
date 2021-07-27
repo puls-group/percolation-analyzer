@@ -148,7 +148,6 @@ TEST_CASE("The graph should correctly detect 1 vertex loop dimensions", "[graph 
     // test 1d loops
     for (size_t i = 0; i < 3; i++)
     {
-        std::cerr << i << ":\t" << components[i].percolation_dim << " #vert=" << components[i].vertices.size() << std::endl;
         REQUIRE(components[i].vertices.size() == 1);
         REQUIRE(components[i].percolation_dim == 1);
         REQUIRE(components[i].component_index == i);
