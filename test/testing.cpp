@@ -214,3 +214,56 @@ TEST_CASE("The graph should correctly detect 1 dimensional components", "[graph 
         }
     }
 }
+
+TEST_CASE("Deal with more complex 1d situations", "[graph 1d complex]")
+{
+    PercolationGraph graph;
+
+    TranslationVector trans1, trans0, trans1_;
+
+    trans1.vec[0] = 1;
+    trans1.vec[1] = 0;
+    trans1.vec[2] = 0;
+
+    trans0.vec[0] = 0;
+    trans0.vec[1] = 0;
+    trans0.vec[2] = 0;
+
+    trans1_ = -trans1;
+
+    // 1D fan out
+    graph.add_edge(0, 1, trans1);
+    graph.add_edge(0, 2, trans1);
+    graph.add_edge(0, 3, trans1);
+
+    // Collect the fan
+    graph.add_edge(1, 4, trans0);
+    graph.add_edge(2, 4, trans0);
+    graph.add_edge(3, 4, trans0);
+
+    // Revert to another cell
+    graph.add_edge(4, 5, trans1_);
+    graph.add_edge(5, 6, trans1_);
+
+    // Another fan out
+    graph.add_edge(6, 7, trans0);
+    graph.add_edge(6, 8, trans0);
+    graph.add_edge(6, 9, trans0);
+    graph.add_edge(6, 10, trans0);
+
+    // Go to origin
+    graph.add_edge(7, 0, trans1);
+    // Will not do the 8
+    graph.add_edge(9, 0, trans1);
+    graph.add_edge(10, 0, trans1);
+
+    std::vector<ComponentInfo> components = graph.get_component_percolation_info();
+
+    REQUIRE(components.size() == 1);
+
+    const ComponentInfo &component = components[0];
+
+    REQUIRE(component.vertices.size() == 11);
+    REQUIRE(component.percolation_dim == 0);
+    REQUIRE(component.component_index == 0);
+}
