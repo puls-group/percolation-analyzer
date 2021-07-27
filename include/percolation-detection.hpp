@@ -146,7 +146,7 @@ namespace percolation
          * @brief Member to keep track of the edges of the constructed graph
          */
         std::vector<std::vector<std::pair<size_t, EdgeData>>> edges;
-        
+
         /**
          * @brief Get the connected components of the current graph.
          * 
