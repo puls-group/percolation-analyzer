@@ -257,7 +257,7 @@ namespace percolation
                 {
                     size_t neighbor = edge.first;
                     TranslationVector target_position = curr_position + edge.second.translation;
-                    if (!visited[neighbor])
+                    if (!visited[neighbor] || !(original_positions[vert_index] == target_position))
                     {
                         vertex_queue.push({neighbor, target_position});
                     }
