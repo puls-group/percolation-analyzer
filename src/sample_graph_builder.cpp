@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     // If you read in your molecular graph from a trajectory, this is where to start setting up
     // The respective data structure:
     //
-    mol::MolecularGraph<double> mol_graph;
+    mol::MolecularGraph mol_graph;
 
     // Reserve memory for the number of atoms in the frame
     mol_graph.set_atom_count(num_points);
