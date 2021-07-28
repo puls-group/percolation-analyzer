@@ -155,7 +155,7 @@ vec<T> decompose(const vec<T> &pos, const std::vector<vec<T>> &basis)
     vec<T> cpy(pos);
     vec<T> res;
 
-    for (int i = 3; i >= 0; i--)
+    for (int i = 2; i >= 0; i--)
     {
         res[i] = cpy[i] / basis[i][i];
         cpy -= basis[i] * res[i];
