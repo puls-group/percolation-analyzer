@@ -13,6 +13,7 @@ namespace mol
     {
         this->atom_positions.resize(num_atoms);
         this->bonds.resize(num_atoms);
+        n_atoms = num_atoms;
     }
 
     bool MolecularGraph::set_basis(const std::vector<vec<graph_precision_type>> &triclinic_basis)
