@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
     double volume = dimx * dimy * dimz;
 
     double volume_per_node = volume / double(num_points);
-    double max_cuttoff = 1.1 * std::pow(volume_per_node, 1. / 3.0);
-    double link_probability_below_cutoff = 0.1;
+    double max_cuttoff = 1.5 * std::pow(volume_per_node, 1. / 3.0);
+    double link_probability_below_cutoff = 0.45;
 
     // Let us set up the c++ way to generate random numbers.
     std::random_device rd;
