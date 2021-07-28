@@ -49,6 +49,16 @@ namespace percolation
         return true;
     }
 
+    translation_coordinate_type &TranslationVector::operator[](size_t i)
+    {
+        return vec[i];
+    }
+    
+    translation_coordinate_type TranslationVector::operator[](size_t i) const
+    {
+        return vec[i];
+    }
+
     struct EdgeData EdgeData::inverse() const
     {
         EdgeData res(*this);

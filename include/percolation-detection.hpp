@@ -28,6 +28,9 @@ namespace percolation
         struct TranslationVector operator+(struct TranslationVector const &other) const;
         struct TranslationVector operator-(struct TranslationVector const &other) const;
         bool operator==(struct TranslationVector const &other) const;
+        
+        translation_coordinate_type &operator[](size_t i);
+        translation_coordinate_type operator[](size_t i) const;
     };
 
     struct VertexData
