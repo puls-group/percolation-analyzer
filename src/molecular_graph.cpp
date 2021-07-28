@@ -55,7 +55,6 @@ namespace mol
         // Resize the percolation graph appropriately
         res.reserve_vertices(n_atoms);
 
-
         // Transform all positions into normalized basis components
         // This is equivalent to moving them all into one pbc cell and transforming the coordinates
         // into cuboid shape, which makes everything simpler.
@@ -78,7 +77,7 @@ namespace mol
                     continue;
                 }
 
-                const vec<graph_precision_type> &h_pos = normalized_positions[base];
+                const vec<graph_precision_type> &h_pos = normalized_positions[head];
 
                 // Let us build the correct translation vector
                 percolation::TranslationVector trans;
