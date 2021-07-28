@@ -51,14 +51,14 @@ public:
 
     vec<T> operator*(T scalar) const
     {
-        vec<T> res;
+        vec<T> res(*this);
         res *= scalar;
         return res;
     }
 
     vec<T> operator/(T scalar) const
     {
-        vec<T> res;
+        vec<T> res(*this);
         res /= scalar;
         return res;
     }
