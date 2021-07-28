@@ -86,11 +86,11 @@ namespace percolation
         /**
          * @brief Reserve memory for the desired maximum number of vertices.
          * 
-         * @param max_index The maximum index of a vertex (starting from zero) to be added.
+         * @param num_vertices The maximum number of indices (starting from index zero) to be added.
          * @return true Memory allocation has been successful
          * @return false Memory allocation has failed
          */
-        bool reserve_vertices(size_t max_index);
+        bool reserve_vertices(size_t num_vertices);
 
         /**
          * @brief Add vertex information to keep track of

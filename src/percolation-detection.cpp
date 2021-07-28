@@ -53,7 +53,7 @@ namespace percolation
     {
         return vec[i];
     }
-    
+
     translation_coordinate_type TranslationVector::operator[](size_t i) const
     {
         return vec[i];
@@ -159,26 +159,25 @@ namespace percolation
         return true;
     }
 
-    bool PercolationGraph::reserve_vertices(size_t max_index)
+    bool PercolationGraph::reserve_vertices(size_t num_vertices)
     {
-        if (this->vertices.size() > max_index)
+        if (this->vertices.size() >= num_vertices)
         {
             return true;
         }
-        max_index++;
         size_t curr_size = this->vertices.size();
-        this->vertices.resize(max_index);
-        for (size_t i = curr_size; i < max_index; i++)
+        this->vertices.resize(num_vertices);
+        for (size_t i = curr_size; i < num_vertices; i++)
         {
             this->vertices[i].index = i;
         }
-        this->edges.resize(max_index);
+        this->edges.resize(num_vertices);
         return true;
     }
 
     bool PercolationGraph::add_vertex(size_t vertex_index, const VertexData &vertex_data)
     {
-        if (!reserve_vertices(vertex_index))
+        if (!reserve_vertices(vertex_index+1))
         {
             return false;
         }
@@ -191,7 +190,7 @@ namespace percolation
     bool PercolationGraph::add_edge(size_t vertex_index_base, size_t vertex_index_head, const EdgeData &edge_data)
     {
         size_t max_index = (vertex_index_base > vertex_index_head ? vertex_index_base : vertex_index_head);
-        if (!reserve_vertices(max_index))
+        if (!reserve_vertices(max_index+1))
         {
             return false;
         }

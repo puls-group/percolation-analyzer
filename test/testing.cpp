@@ -53,7 +53,7 @@ TEST_CASE("The graph should detect one dimension per component", "[graph compone
     SECTION("Not adding edges should yield one component per vertex")
     {
         PercolationGraph graph;
-        graph.reserve_vertices(num_vertices - 1);
+        graph.reserve_vertices(num_vertices);
         std::vector<ComponentInfo> components = graph.get_component_percolation_info();
 
         REQUIRE(components.size() == num_vertices);
@@ -67,7 +67,7 @@ TEST_CASE("The graph should detect one dimension per component", "[graph compone
     }
 
     PercolationGraph graph2;
-    graph2.reserve_vertices(num_vertices - 1);
+    graph2.reserve_vertices(num_vertices);
 
     SECTION("Successively adding edges should reduce number of components")
     {
