@@ -27,6 +27,7 @@ public:
         x = other.x;
         y = other.y;
         z = other.z;
+        return *this;
     }
 
     vec<T> operator+(const vec<T> &other) const
