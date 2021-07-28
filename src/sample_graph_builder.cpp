@@ -64,6 +64,7 @@ int main(int argc, char *argv[])
     // as well as basis[0][0] != 0,  basis[1][1] != 0, basis[2][2] != 0
     // The precise setup of this will depend on your chosen basis
 
+    std::cout << "Register the system pbc" << std::endl;
     std::vector<vec<double>> basis(3);
     basis[0].x = dimx;
     basis[1].y = dimy;
@@ -80,6 +81,7 @@ int main(int argc, char *argv[])
     std::vector<vec<double>> positions(num_points);
 
     const double sq_cutoff = max_cuttoff * max_cuttoff;
+    std::cout << "Randomly populate molecular graph" << std::endl;
     //
     // If you read in your graph data, this is where you populate the graph with your data instead of randomly generated positions and links.
     //
@@ -116,9 +118,11 @@ int main(int argc, char *argv[])
     // We will now convert it to the percolation detection graph
     //
 
+    std::cout << "Convert molecular graph to percolation graph" << std::endl;
     // Retrieve the Percolation Graph associated with the molecular graph
     percolation::PercolationGraph percolation_graph = mol_graph.get_percolation_graph();
 
+    std::cout << "Retrieve percolation data" << std::endl;
     // Now calculate the percolation info
     std::vector<percolation::ComponentInfo> percolation_data = percolation_graph.get_component_percolation_info();
 
