@@ -66,9 +66,9 @@ int main(int argc, char *argv[])
 
     std::cout << "Register the system pbc" << std::endl;
     std::vector<vec<double>> basis(3);
-    basis[0].x = dimx;
-    basis[1].y = dimy;
-    basis[2].z = dimz;
+    basis[0][0] = dimx;
+    basis[1][1] = dimy;
+    basis[2][2] = dimz;
 
     // Check the return value of set_base to make sure that the graph basis is correctly formatted
     if (!mol_graph.set_basis(basis))
