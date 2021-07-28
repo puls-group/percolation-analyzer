@@ -2,8 +2,8 @@
 #define __MOLECULAR_GRAPH_H__
 
 #include <vector>
-#include "vec.hpp"
 
+#include "vec.hpp"
 #include "percolation-detection.hpp"
 
 namespace mol
