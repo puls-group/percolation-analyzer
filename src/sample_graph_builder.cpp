@@ -98,8 +98,8 @@ int main(int argc, char *argv[])
             vec<double> diff = positions[prev] - positions[i];
 
             // Deal with the periodicity:
-            vec<double> basis_coeffficients = decompose(diff, basis);
             // Choose the shortest connection as the basis by limiting the coefficients to [-0.5,0.5]
+            vec<double> basis_coeffficients = normalize_basis_coefficients(decompose(diff, basis));
 
             // Calculate the shortest connecting vector respecting pbc and its square length
             vec<double> per_diff = basis[0] * basis_coeffficients[0] + basis[1] * basis_coeffficients[1] + basis[2] * basis_coeffficients[2];
