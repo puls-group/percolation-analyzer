@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
     double volume = dimx * dimy * dimz;
 
     double volume_per_node = volume / double(num_points);
-    double max_cuttoff = 2.0 * std::pow(volume_per_node, 1. / 3.0);
-    double link_probability_below_cutoff = 0.7;
+    double max_cuttoff = 1.1 * std::pow(volume_per_node, 1. / 3.0);
+    double link_probability_below_cutoff = 0.1;
 
     // Let us set up the c++ way to generate random numbers.
     std::random_device rd;
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
             double distance2 = per_diff.norm2();
 
             // Randomly add bonds if below cutoff
-            if (distance2 < sq_cutoff && link_distr(engine) <= link_probability_below_cutoff)
+            if (distance2 < sq_cutoff && link_distr(engine) < link_probability_below_cutoff)
             {
                 mol_graph.add_bond(prev, i);
             }
