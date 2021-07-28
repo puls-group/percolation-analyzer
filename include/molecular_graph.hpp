@@ -8,8 +8,8 @@
 
 namespace mol
 {
+    using graph_precision_type = double;
 
-    template <typename T>
     class MolecularGraph
     {
     public:
@@ -17,18 +17,18 @@ namespace mol
         MolecularGraph(size_t num_atoms);
 
         void set_atom_count(size_t num_atoms);
-        bool set_basis(const std::vector<vec<T>> &triclinic_basis);
+        bool set_basis(const std::vector<vec<graph_precision_type>> &triclinic_basis);
 
-        void set_atom_position(size_t atom_index, const vec<T> &pos);
-        void add_bond(size_t atom_index_1, size_t atom_index_2);
+        bool set_atom_position(size_t atom_index, const vec<graph_precision_type> &pos);
+        bool add_bond(size_t atom_index_1, size_t atom_index_2);
 
         percolation::PercolationGraph get_percolation_graph() const;
 
     protected:
         size_t n_atoms;
-        std::vector<vec<T>> triclinic_basis;
+        std::vector<vec<graph_precision_type>> triclinic_basis;
 
-        std::vector<vec<T>> atom_positions;
+        std::vector<vec<graph_precision_type>> atom_positions;
         std::vector<std::vector<size_t>> bonds;
     };
 }
