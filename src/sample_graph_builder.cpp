@@ -3,7 +3,7 @@
 #include <cmath>
 #include <random>
 
-#include "molecular_graph.hpp"
+#include "molecular-graph.hpp"
 
 /**
  * @brief Sample program to randomly generate a molecular graph and convert it into the percolation graph

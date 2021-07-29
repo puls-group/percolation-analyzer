@@ -1,4 +1,4 @@
-#include "molecular_graph.hpp"
+#include "molecular-graph.hpp"
 
 namespace mol
 {
