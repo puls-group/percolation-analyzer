@@ -28,7 +28,7 @@ namespace percolation
         struct TranslationVector operator+(struct TranslationVector const &other) const;
         struct TranslationVector operator-(struct TranslationVector const &other) const;
         bool operator==(struct TranslationVector const &other) const;
-        
+
         translation_coordinate_type &operator[](size_t i);
         translation_coordinate_type operator[](size_t i) const;
     };
@@ -52,7 +52,7 @@ namespace percolation
         size_t percolation_dim;
         std::vector<VertexData> vertices;
     };
-    
+
     /**
      * @brief Function to calculate the determinant of a square matrix
      * 
