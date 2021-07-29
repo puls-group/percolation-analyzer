@@ -40,7 +40,8 @@ namespace percolation
 
     struct EdgeData
     {
-        EdgeData(const TranslationVector &trans) : translation(trans){}
+        EdgeData(){};
+        EdgeData(const TranslationVector &trans) : translation(trans) {}
         TranslationVector translation;
 
         struct EdgeData inverse() const;
