@@ -35,14 +35,6 @@ add_subdirectory(${LIB_DIR})
 # Add compile scripts for own submodules
 add_subdirectory(${SRC_DIR})
 
-# Define target "percolation-analyzer" for library generation
-add_library(percolation-analyzer ${SRC_DIR}/percolation-analyzer.c)
-target_link_libraries(percolation-analyzer percolation-analyzer-cpp)
-
-target_include_directories(percolation-analyzer PUBLIC ${INCLUDE_DIR})
-#target_include_directories(percolation-analyzer PRIVATE ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
-
-
 add_subdirectory(test/Catch2)
 
 add_executable(test_runner test/testing.cpp)
