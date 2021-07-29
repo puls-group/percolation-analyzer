@@ -44,4 +44,4 @@ target_link_libraries(test_runner PRIVATE Catch2::Catch2 percolation-analyzer)
 
 add_executable(sample_graph src/sample_graph_builder.cpp)
 target_include_directories(sample_graph PUBLIC ${INCLUDE_DIR})
-target_link_libraries(sample_graph PRIVATE percolation-analyzer molecular-graph-cpp)
+target_link_libraries(sample_graph PRIVATE molecular-graph-cpp)
