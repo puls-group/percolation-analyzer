@@ -11,11 +11,11 @@ This repository contains the necessary code to analyze whether or not a molecule
 
 The code is provided as-is without any warranty for its correctness under the MIT license (see `LICENSE` file). We have tested it and are reasonably sure that it works, but it is always possible for bugs to occur in special cases. If you think you have found a bug, please let us know via the issues of this project.
 
-If you use the code provided in this repository for research purposes, please cite the paper "TODO" (doi: TODO) as a reference.
+If you use the code provided in this repository for research purposes, please cite the paper "An Exact Algorithm to Detect the Percolation Transition in Molecular Dynamics Simulations of Cross-Linking Polymer Networks" (doi: [10.1021/acs.jctc.1c00423 ](https://doi.org/10.1021/acs.jctc.1c00423 )) as a reference.
 
 BibTeX:
 ```
-@article{}
+@article{Livraghi_2021, doi = {10.1021/acs.jctc.1c00423}, url = {https://doi.org/10.1021%2Facs.jctc.1c00423}, year = 2021, month = {sep}, publisher = {American Chemical Society ({ACS})}, author = {Mattia Livraghi and Kevin H\"ollring and Christian R. Wick and David M. Smith and Ana-Sun{\v{c}}ana Smith}, title = {An Exact Algorithm to Detect the Percolation Transition in Molecular Dynamics Simulations of Cross-Linking Polymer Networks}, journal = {Journal of Chemical Theory and Computation} } 
 ```
 
 This repository also provides a doi for each full release of the software:
