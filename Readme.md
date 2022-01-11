@@ -18,9 +18,7 @@ BibTeX:
 @article{Livraghi_2021, doi = {10.1021/acs.jctc.1c00423}, url = {https://doi.org/10.1021%2Facs.jctc.1c00423}, year = 2021, month = {sep}, publisher = {American Chemical Society ({ACS})}, author = {Mattia Livraghi and Kevin H\"ollring and Christian R. Wick and David M. Smith and Ana-Sun{\v{c}}ana Smith}, title = {An Exact Algorithm to Detect the Percolation Transition in Molecular Dynamics Simulations of Cross-Linking Polymer Networks}, journal = {Journal of Chemical Theory and Computation} } 
 ```
 
-This repository also provides a doi for each full release of the software:
-
-TODO
+This repository also provides a doi for each full release of the software. Please consult the releases page for the full list of releases.
 
 ## How to use
 
