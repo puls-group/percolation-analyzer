@@ -23,6 +23,7 @@ This repository also provides a doi for each full release of the software. Pleas
 ## How to use
 
 ### General Percolation Graph interface
+
 We will explain the workings of this library by example of the cpp classes provided in `include/percolation-detection.hpp` and `include/molecular-graph.hpp`. There is also a C-wrapper for the percolation backend provided in `include/percolation-analyzer.h`.
 
 The design decisions for the interface are the same.
@@ -61,6 +62,7 @@ This will set up the cmake configuration in a subdirectory `build` of the curren
 * To build the tests to check for the correct operation of the percolation analysis (output: `bin/test_runner`) you can then run `make test_runner` in the `build` directory
 
 In order for your own program to use this library, you need to link against the appropriate library that you want to use ( `bin/percolation-analyzer-cpp.lib`,  `bin/percolation-analyzer-c.lib` or  `bin/molecular-graph-cpp.lib`) as well as add the files in the `include` directory to your include path.
+
 ## Authors
 
 The code was written by Kevin Höllring in 2020, phd student at PULS group of Friedrich-Alexander-University Erlangen-Nuremberg.
