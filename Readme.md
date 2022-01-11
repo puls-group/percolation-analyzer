@@ -63,4 +63,4 @@ This will set up the cmake configuration in a subdirectory `build` of the curren
 In order for your own program to use this library, you need to link against the appropriate library that you want to use ( `bin/percolation-analyzer-cpp.lib`,  `bin/percolation-analyzer-c.lib` or  `bin/molecular-graph-cpp.lib`) as well as add the files in the `include` directory to your include path.
 ## Authors
 
-The code was written by Kevin Höllring in 2021, phd student at PULS group of Friedrich-Alexander-University Erlangen-Nuremberg.
+The code was written by Kevin Höllring in 2020, phd student at PULS group of Friedrich-Alexander-University Erlangen-Nuremberg.
